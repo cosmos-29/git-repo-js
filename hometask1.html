@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Домашняя работа №1</title>
-    
-	<!--<script src="js/ht1_2.js"></script>
+    <script src="js/ht1_1.js" defer></script>
+    <!--<script src="js/ht1_2.js"></script>
 	<script src="js/ht1_3.js"></script>-->
     <link rel="stylesheet" href="styles/CSS/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-      </head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> </head>
 
 <body>
-   
     <header>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="#">Домашняя работа №1</a>
@@ -27,8 +25,15 @@
         <div class="container">
             <h2>Практическое задание</h2>
             <ol>
-                <li>Задать температуру в градусах по Цельсию. Вывести в alert соответствующую температуру в градусах по Фаренгейту. Подсказка: расчет идет по формуле Tf = (9 / 5) * Tc + 32 , где Tf — температура по Фаренгейту, Tc — по Цельсию.</li>                
+                <li>Задать температуру в градусах по Цельсию. Вывести в alert соответствующую температуру в градусах по Фаренгейту. Подсказка: расчет идет по формуле Tf = (9 / 5) * Tc + 32 , где Tf — температура по Фаренгейту, Tc — по Цельсию.</li>
             </ol>
+        </div>
+        <div class="container">
+            <h3>Решение</h3>
+            <div class="input-group mb-3"> 
+               <a href="#" onClick="readInt();" id="button">Начать</a>
+                <input type="text" class="form-control" id="readInt" placeholder="Введите температуру" aria-label="Example text with button addon" aria-describedby="button-addon1"> </div>
+            <p id="outputData"></p>
         </div>
     </main>
     <script src="js/jquery.slim.min.js"></script>
@@ -38,19 +43,13 @@
 <footer>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            
-               <div class="container">
-               <div></div>
-               <div class="social">
-               
-                <a href="tg://resolve?domain=cjkasd"><i class="fab fa-telegram-plane"></i></a>
-            </div>
-            <div class="text">
-                <a href="https://geekbrains.ru/" target="_blank">Copyright &copy 2019 GeekBrains</a>
-            </div>
+            <div class="container">
+                <div></div>
+                <div class="social"> <a href="tg://resolve?domain=cjkasd"><i class="fab fa-telegram-plane"></i></a> </div>
+                <div class="text"> <a href="https://geekbrains.ru/" target="_blank">Copyright &copy 2019 GeekBrains</a> </div>
             </div>
         </nav>
     </div>
 </footer>
-<script src="js/ht1_1.js" defer></script>
+
 </html>

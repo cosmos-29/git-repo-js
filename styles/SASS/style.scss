@@ -1,0 +1,46 @@
+@import "_variables.scss";
+body {
+    min-height: 100vh;
+    display: grid !important;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:"header" "main" "footer";
+    
+    
+    header {
+        grid-area: header;
+        padding: auto;
+        background-color: $colorAll;
+        .container {
+            nav {
+                margin: auto !important;
+            }
+        }
+    }
+    main {
+        grid-area: main;
+    }
+    footer {
+        grid-area: footer;
+        padding: auto;
+        background-color: $colorAll;
+        .container {
+            nav {
+                div {
+                    display: flex;
+                    align-items: center;
+                     
+                    a {
+                        text-decoration: none;
+                        color: #fff;
+                        font-size:1.2em !important;
+                        &:hover {
+                            color: deeppink;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

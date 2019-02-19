@@ -19,6 +19,17 @@ body {
     }
     main {
         grid-area: main;
+        .container {
+            button {
+                background-color: $colorAll;
+                color: white;
+            }
+            .card-body {
+                span {
+                    font-weight: 700 !important;
+                }
+            }
+        }
     }
     footer {
         grid-area: footer;

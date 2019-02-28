@@ -1,15 +1,30 @@
 //записываем вложенные массивы в 0-ой ячейке - наименование товара, в ячейке 1 - стоимость, в ячейке 2 - количество.
-var itemsBasket = [["товар №1",300,3],
-["товар №2",100,8],
-["товар №3",200,7],
-["товар №4",150,4],
-["товар №5",40,15],
-["товар №6",10,2],
-["товар №7",500,3],
-["товар №8",400,1],
-["товар №9",600,2],
-["товар №10",200,4],]
+var itemsBasket = {
+	product: [1, 300, 3,],
+
+	product1: [1, 300, 3,],
+
+	product2: [1, 300, 3,],
+
+	product3: [1, 300, 3,],
+
+	product4: [1, 300, 3,],
+
+	product5: [1, 300, 3,],
+
+	product6: [1, 300, 3,],
+
+	product7: [1, 300, 3,],
+
+	product8: [1, 300, 3,],
+
+	product9: [1, 300, 3,],
+};
 //Функция по подсчету стоимости корзины
+function arrFromObject(allData) {
+	return allData = Object.values(allData);
+}
+
 function countBasketPrice(x) {
 	var i = 0;
 	var sum = 0;
@@ -23,4 +38,5 @@ function countBasketPrice(x) {
 }
 //вывод
 
-console.log(countBasketPrice(itemsBasket));
+
+alert(countBasketPrice(arrFromObject(itemsBasket)));

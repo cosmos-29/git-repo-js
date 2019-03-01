@@ -1,42 +1,61 @@
-//записываем вложенные массивы в 0-ой ячейке - наименование товара, в ячейке 1 - стоимость, в ячейке 2 - количество.
-var itemsBasket = {
-	product: [1, 300, 3,],
+//Создаем 2 оюъекта наполенный и пустой
+var itemsCart = [
+	{
+		name: 'Smart Phone',
+		price: 70000,
+		quantity: 3,
 
-	product1: [1, 300, 3,],
+	},
+	{
+		name: 'Защитное стекло',
+		price: 1000,
+		quantity: 6,
 
-	product2: [1, 300, 3,],
+	},
+	{
+		name: 'Защитный чехол',
+		price: 1500,
+		quantity: 3,
 
-	product3: [1, 300, 3,],
+	},
+];
 
-	product4: [1, 300, 3,],
-
-	product5: [1, 300, 3,],
-
-	product6: [1, 300, 3,],
-
-	product7: [1, 300, 3,],
-
-	product8: [1, 300, 3,],
-
-	product9: [1, 300, 3,],
-};
-//Функция по подсчету стоимости корзины
-function arrFromObject(allData) {
-	return allData = Object.values(allData);
-}
-
-function countBasketPrice(x) {
-	var i = 0;
+var emptyCart = [ {
+	name: '',
+	price: 0,
+	quantity: 0,
+	},
+];
+//Функция подсчета
+function coinShopCart(anyItem) {
 	var sum = 0;
-	while(i <=(x.length - 1)) {
-		var m = +x[i][1];
-		var n = +x[i][2];
-		var sum = sum + (m * n);
-		i++;
+	var massedge = '';
+	for (var i = 0; i < anyItem.length; i++) {
+		sum = sum + anyItem[i].price * anyItem[i].quantity;
 	}
+	if (sum > 0) {
 	return sum;
+} else {
+	return massedge = ' 0';
 }
-//вывод
+}
+function countCart(anyItem) {
+	var stringCart = "";
+	for (var i = 0; i < anyItem.length; i++) {
+		stringCart = stringCart + "Вы выбрали " + anyItem[i].quantity + " шт " + anyItem[i].name + "<br>";
+	}
+	if (!isNaN(coinShopCart(anyItem))) {
+		return stringCart;
+		} else {
+				return stringCart = ' Ваша Корзина пуста';
+		}
+
+}
+//Вывод на страничку.
+	var shoppingCart = document.getElementById("shoppingCart");
+	var objectPrint = shoppingCart.appendChild(document.createElement("div"));
+	objectPrint.innerHTML =  countCart(itemsCart) + "<br>" + "Общая стоимость выбранных продуктов: " + coinShopCart(itemsCart) + 'р.';
+	var objectEmptyPrint = shoppingCart.appendChild(document.createElement("div"));
+	objectEmptyPrint.innerHTML = "<br>" + countCart(emptyCart) + "<br>" + "Общая стоимость выбранных продуктов: " + coinShopCart(emptyCart) + 'р.';
 
 
-alert(countBasketPrice(arrFromObject(itemsBasket)));

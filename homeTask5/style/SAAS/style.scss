@@ -16,6 +16,10 @@ body {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                &:first-child {
+                    margin-top: 32px;
+                    
+                }
                 &:last-child {
                 justify-content:flex-start;
                 align-items: flex-start;
@@ -35,6 +39,11 @@ body {
                 height: 32px;
                 justify-content: center;
                 align-items: center;
+                outline: 2px outset lightGray;
+                &:first-child {
+                    margin-left: 32px;
+                    
+                }
             }
             div:nth-child(odd) span:nth-child(even),
             div:nth-child(even) span:nth-child(odd) {
@@ -45,8 +54,9 @@ body {
                 background-color: $colorWht;
             }
             div:last-child span {
-                border-top: 2px outset lightGray;
                 background-color: $colorWht!important;
+                border-top: 2px outset lightGray;
+                outline: none;
             }
             
         }

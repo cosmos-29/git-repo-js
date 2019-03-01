@@ -1,1 +1,1 @@
-body .container{width:1200px;margin:auto;display:flex;justify-content:center;align-items:center}
+body .container{width:1200px;background:grey;margin:auto;display:flex;justify-content:center;align-items:center}body .container #catalog div{width:1200px;height:auto;border:1px solid red;border-collapse:collapse;display:flex;align-items:center;justify-content:center}body .container #catalog div span{height:50px;width:400px;display:inline-flex;border:1px solid red;border-collapse:collapse;justify-content:center;align-items:center}

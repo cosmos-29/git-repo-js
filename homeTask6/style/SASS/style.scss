@@ -1,6 +1,6 @@
 @import "_variables.scss";
 body {
-    font-family: 'Open Sans';
+    font-family: $fontAll;
     font-style: condensed;
     background: #5b2072;
     /* Old browsers */
@@ -25,7 +25,7 @@ body {
                 width: 300px;
                 background-color: #2b2937;
                 border-radius: 0px 0px 5px 5px;
-                font-family: 'Open Sans';
+                font-family: $fontAll;
                 font-style: condensed;
                 font-size: 90px;
                 color: white;
@@ -47,7 +47,7 @@ body {
                     ul {
                         list-style: none;
                         font-size: 15px;
-                        font-family: 'Open Sans';
+                        font-family: $fontAll;
                         color: #9095aa;
                         padding: 0px;
                         margin: 0px;
@@ -65,7 +65,7 @@ body {
                     height: 80px;
                     a {
                         font-size: 18px;
-                        font-family: 'Open Sans';
+                        font-family: $fontAll;
                         color: white;
                         text-decoration: none;
                     }
@@ -98,7 +98,7 @@ sup {
 }
 
 .type p {
-    font-family: 'Open Sans';
+    font-family: $fontAll;
     font-weight: 800;
     font-size: 29px;
     text-transform: uppercase;
@@ -132,14 +132,22 @@ sup {
     background-color: blueviolet;
     border-bottom: 3px solid blueviolet;
 }
+
 .nextNextNextOne {
     background-color: palevioletred;
     border-bottom: 3px solid palevioletred;
 }
 
-
-
 .bottom {}
+
+#cartShoppingPrint {
+    font-family: $fontAll;
+    font-weight: 800;
+    font-size: 28px;
+    color: white!important;
+    margin-bottom: 100px!important;
+    display: block;
+}
 
 .shoppingCart {
     width: 500px;
@@ -148,23 +156,18 @@ sup {
     margin: 0 auto;
     margin-top: 40px;
     border-radius: 5px;
-   
-}
-
-.shoppingCart input {
-    width: 350px;
-    height: 40px;
-    border: 1px solid #494a5a;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    padding-left: 10px;
-}
-
-.cartDown {
-    background-color: #BC4B1A;
-    border-bottom: 3px solid #7C3618;
-    width: 100%;
-    
+    .cartDown {
+        background-color: #BC4B1A;
+        border-bottom: 3px solid #7C3618;
+        width: 100%;
+        p {
+            font-family: $fontAll;
+            font-weight: 800;
+            font-size: 18px;
+            color: white;
+            margin-bottom: 100px;
+        }
+    }
 }
 
 .top {

@@ -85,14 +85,14 @@ var product = [
 	            , name: 'type nextNextNextOne'
 	            , price1: 99
 	            , price2: 99
-	            , email: '15 Email Accounts'
-	            , volume: '100GB Space'
-	            , domain: '1 Domain Name'
-	            , count: 1	            
+	            , $email: '15 Email Accounts'
+	            , $volume: '100GB Space'
+	            , $domain: '1 Domain Name'
+	            , $count: 1	            
 	            
 	        , }
 
-var $wholes = document.getElementsByTagName("whole");
+var $container = document.getElementsByTagName("container");
 // Вывод результата в виде текста
 function messageCart(text) {
 	    document.getElementById('cartShoppingPrint').textContent = text
@@ -126,42 +126,86 @@ function messageCart(text) {
 //Визуализация корзины 
 function catalogVisualItem(productItem, indexItem) {
 	    /* ------- Вывод атрибутов объекта без префикса '_' -------*/
-	    var content = ''	    
-	    var $elem = document.createElement('div')
-	    
-	    $elem.classList.add('whole')
+	        
+	    var $elem = document.createElement('div');	      
+	    $elem.classList.add('whole');
+	    $container.appendChild($elem);
 
-	    var $type = document.createElement('div')
-
-	    $type.classList.add(productItem[indexItem].name)
-
-
-	    var $p = document.createElement('p')
-	    $p.innerHTML = productItem[indexItem].tag
-
-	    var $plan = document.createElement('div')
-	    $plan.classList.add("plan")
-
-	    var $header = document.createElement('div')
-	    $header.classList.add("header")
+	    var $type = document.createElement('div');
+	    $type.classList.add(productItem[indexItem].name);
+	    $elem.appendChild($type);
 
 
+	    var $p = document.createElement('p');
+	    $p.innerHTML = productItem[indexItem].tag;
+	    $type.appendChild($p);
+
+	    var $plan = document.createElement('div');
+	    $plan.classList.add("plan");
+	    $elem.appendChild($plan);
 
 
+	    var $header = document.createElement('div');
+	    $header.classList.add("header");
+	    $plan.appendChild($header);
 
-	    $elem.setAttribute('tabindex', indexItem)
-	    catalog.appendChild($elem)
-	        /* -------- Кнопка объекта "Купить"  --------*/
-	    var $button = document.createElement('button')
-	    $button.textContent = 'Купить ' + productItem['_price'] + ' руб.'
-	    var addToCartAtribute = ('addToCart(product[' + indexItem + '],cart)')
-	    $button.setAttribute('onclick', addToCartAtribute)
-	    $elem.appendChild($button)
-	        /* -------- Маленькая картинка в каталоге  --------*/
-	    var $smallImg = document.createElement('img')
-	    $smallImg.classList.add('smallImg')
-	    var src = 'img/small/' + productItem['_name'] + '_' + productItem['_color'] + '.jpg'
-	    $smallImg.src = src
-	    $elem.insertBefore($smallImg, $button)
+	    var $content = document.createElement('div');
+	    $content.classList.add("content");
+	    $plan.appendChild($content);
+
+	    var $price = document.createElement('div');
+	    $price.classList.add("price");
+	    $plan.appendChild($price);
+	    $price.innerHTML = productItem[indexItem].price1;
+
+
+	    var $$ = document.createElement('span');
+	    $header.appendChild($$);
+	    $$.innerHTML = "$";
+
+
+	    var $sup = document.createElement('sup')
+	    $sup.innerHTML = productItem[indexItem].price2
+	    $header.appendChild($sup);
+
+	    var $month = document.createElement('p')
+	    $month.innerHTML = "per month"
+	    $header.appendChild($month);
+
+	    var $ul = document.createElement('ul')
+		$content.appendChild($ul);
+
+	    var li=document.createElement('li');
+
+    	for (var prop in productItem) {
+	        if (prop[0] == '$') {
+	        var $li=document.createElement('li');
+    		$ul.appendChild($li);
+    		$li.innerHTML = productItem[prop];
+    		}
+		}
+		var $buttom = document.createElement('a')	    
+	    $buttom.classList.add("buttom")
+	    $price.appendChild($buttom);
+	    //тут сделать oneclick
+
+	    var $ppp = document.createElement('p')	    
+	    $ppp.classList.add("cart")
+	    $ppp.innerHTML = "Add to cart"
+	    $buttom.appendChild($ppp);
+	
 	}
+
+	function catalogVisual(productObject) {
+	    for (i = 0; i < productObject.length; i++) {
+	        catalogVisualItem(productObject[i], i)
+	    }
+	}
+
+	function init() {
+	    
+	    catalogVisual(product);
+	    
+	}
+	window.addEventListener('load', init) 
 

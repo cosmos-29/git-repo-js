@@ -162,23 +162,13 @@ function catalogVisualItem(productItem, indexItem) {
     		$li.innerHTML = productItem[prop];
     		}
 		}
-		var $lock = document.createElement('div')
-		$lock.classList.add("lock")
-		$content.appendChild($lock);
-
-		var $shim = document.createElement('div')
-		$shim.classList.add("shim")
-		$lock.appendChild($shim);
-
-		var $modal = document.createElement('div')
-		$modal.classList.add("modal")
-		$shim.appendChild($modal);
+		
 
 
 		var $smallImages = document.createElement('img')
 		$smallImages.classList.add("smallImg")
 		$smallImages.src = ('img/' + productItem.link + '.jpg')
-		$modal.appendChild($smallImages);
+		$content.appendChild($smallImages);
 
 		var $price = document.createElement('div');
 	    $price.classList.add("price");
@@ -216,13 +206,14 @@ function catalogVisualItem(productItem, indexItem) {
 var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+var btn1 = document.getElementsByClassName("smallImg");
+var btn2 = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal 
-btn.onclick = function() {
+btn2.onclick = function() {
   modal.style.display = "block";
 }
 

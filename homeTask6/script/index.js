@@ -1,88 +1,31 @@
-/*
-$('.header').click(function(){
-  
-  var $this = $(this);
-  $this.closest(".whole").find(".content").slideToggle();
-  
-  
-});
 
-$("input").on("mouseenter",function(){
-  event.preventDefault();
-  
-  $(this).animate(
-    
-    {opacity:1}
-  
-  
-  );
-
-});
-
-$(".whole").on("click","a",function(){
-  event.preventDefault();
-  $(".plan").removeClass("selected");
-  $(this).closest(".whole").find(".plan").addClass("selected");
-
-
-});
-*/
 // Создаем корзину для товаров выбранных, а также корзину наполненную товарами. 
+var $container = document.getElementById("container");
 var userCar = []
 var product = [
 	        {
 	            tag: 'ITEM N1'
-	            , name: 'type'
+	            , naime: 'first'
 	            , price1: 29
 	            , price2: 99
-	            , email: '15 Email Accounts'
-	            , volume: '100GB Space'
-	            , domain: '1 Domain Name'
-	            ,  uantity: 1	            
+	            , $email: '15 Email Accounts'
+	            , $volume: '100GB Space'
+	            , $domain: '1 Domain Name'
+	            ,  $count: 1	            
 	            
 	        }, {
 	            tag: 'ITEM N2'
-	            , name: 'type standard'
+	            , naime: 'standard'
 	            , price1: 49
 	            , price2: 99
-	            , email: '15 Email Accounts'
-	            , volume: '100GB Space'
-	            , domain: '1 Domain Name'
-	            , count: 1	            
+	            , $email: '15 Email Accounts'
+	            , $volume: '100GB Space'
+	            , $domain: '1 Domain Name'
+	            , $count: 1	            
 	            
 	        }, {
 	            tag: 'ITEM N3'
-	            , name: 'type ultimate'
-	            , price1: 99
-	            , price2: 99
-	            , email: '15 Email Accounts'
-	            , volume: '100GB Space'
-	            , domain: '1 Domain Name'
-	            , count: 1	            
-	            
-	        }, {
-	            tag: 'ITEM N4'
-	            , name: 'type nextOne'
-	            , price1: 29
-	            , price2: 99
-	            , email: '15 Email Accounts'
-	            , volume: '100GB Space'
-	            , domain: '1 Domain Name'
-	            , count: 1	            
-	            
-	        }, {
-	            tag: 'ITEM N5'
-	            , name: 'type nextNextOne'
-	            , price1: 49
-	            , price2: 99
-	            , email: '15 Email Accounts'
-	            , volume: '100GB Space'
-	            , domain: '1 Domain Name'
-	            , count: 1	            
-	            
-	        , }, {
-	              tag: 'ITEM N6'
-	            , name: 'type nextNextNextOne'
+	            , naime: 'ultimate'
 	            , price1: 99
 	            , price2: 99
 	            , $email: '15 Email Accounts'
@@ -90,22 +33,53 @@ var product = [
 	            , $domain: '1 Domain Name'
 	            , $count: 1	            
 	            
-	        , }
+	        }, {
+	            tag: 'ITEM N4'
+	            , naime: 'nextOne'
+	            , price1: 29
+	            , price2: 99
+	            , $email: '15 Email Accounts'
+	            , $volume: '100GB Space'
+	            , $domain: '1 Domain Name'
+	            , $count: 1	            
+	            
+	        }, {
+	              tag: 'ITEM N5'
+	            , naime: 'nextNextOne'
+	            , price1: 49
+	            , price2: 99
+	            , $email: '15 Email Accounts'
+	            , $volume: '100GB Space'
+	            , $domain: '1 Domain Name'
+	            , $count: 1	            
+	            
+	        }, {
+	              tag: 'ITEM N6'
+	            , naime: 'nextNextNextOne'
+	            , price1: 99
+	            , price2: 99
+	            , $email: '15 Email Accounts'
+	            , $volume: '100GB Space'
+	            , $domain: '1 Domain Name'
+	            , $count: 1	            
+	            
+	        }]
 
-var $container = document.getElementsByTagName("container");
+
 // Вывод результата в виде текста
-function messageCart(text) {
-	    document.getElementById('cartShoppingPrint').textContent = text
+function mesageCart(text) {
+		var cartcart = document.getElementById('cartcart')
+	   cartcart.textContent = text
 	}
 //Подсчет суммы в корзине
 	function countBasketPrice(cartUser) {
 	    var countCart = 0
 	    var sumPriceCart = 0
 	    for (var i = 0; i < cartUser.length; i++) {
-	        sumPriceCart += cartUser[i]._price;
-	        countCart += cartUser[i]._quantity;
+	        sumPriceCart += (cartUser[i].price1 + cartUser[i].price2/100) ;
+	        countCart += cartUser[i].$count;
 	    }
-	    messageCart('Итого: ' + countCart + ' шт. стоимостью ' + sumPriceCart + ' рублей. ')
+	    mesageCart('Итого: ' + countCart + ' шт. стоимостью ' + parseFloat(sumPriceCart.toFixed(2)) + ' $ ')
 	}
 //добавление товара при клике
 	function addToCart(goods, cartUser) {
@@ -114,30 +88,30 @@ function messageCart(text) {
 	}
 //Очистка корзины
 	function clearCart(cartUser) {
-	    messageCart('В корзине пусто.')
+	    mesageCart('В корзине пусто.')
 	    cartUser.length = 0 /*cartUser.splice(0, cartUser.length)*/
 	}
 	
 	function handleClearCart() {
-	    clearCart(cart)
+	    clearCart(userCar)
 	}
 	/*$clear.setAttribute('onclick', 'clearCart(cart)')*/
 
 //Визуализация корзины 
-function catalogVisualItem(productItem, indexItem) {
-	    /* ------- Вывод атрибутов объекта без префикса '_' -------*/
+function catalogVisualItem(productItem, indexItem) {	    
 	        
 	    var $elem = document.createElement('div');	      
 	    $elem.classList.add('whole');
 	    $container.appendChild($elem);
 
 	    var $type = document.createElement('div');
-	    $type.classList.add(productItem[indexItem].name);
+	    var classOfElement = productItem.naime;
+	    $type.classList.add('type', classOfElement);
 	    $elem.appendChild($type);
 
 
 	    var $p = document.createElement('p');
-	    $p.innerHTML = productItem[indexItem].tag;
+	    $p.innerHTML = productItem.tag;
 	    $type.appendChild($p);
 
 	    var $plan = document.createElement('div');
@@ -153,24 +127,25 @@ function catalogVisualItem(productItem, indexItem) {
 	    $content.classList.add("content");
 	    $plan.appendChild($content);
 
-	    var $price = document.createElement('div');
-	    $price.classList.add("price");
-	    $plan.appendChild($price);
-	    $price.innerHTML = productItem[indexItem].price1;
+	    
+	    
 
 
 	    var $$ = document.createElement('span');
 	    $header.appendChild($$);
 	    $$.innerHTML = "$";
 
+	    $header.innerHTML = productItem.price1;
 
 	    var $sup = document.createElement('sup')
-	    $sup.innerHTML = productItem[indexItem].price2
+	    $sup.innerHTML = productItem.price2
 	    $header.appendChild($sup);
 
 	    var $month = document.createElement('p')
 	    $month.innerHTML = "per month"
+	    $month.classList.add("month");
 	    $header.appendChild($month);
+
 
 	    var $ul = document.createElement('ul')
 		$content.appendChild($ul);
@@ -184,18 +159,27 @@ function catalogVisualItem(productItem, indexItem) {
     		$li.innerHTML = productItem[prop];
     		}
 		}
+
+		var $price = document.createElement('div');
+	    $price.classList.add("price");
+	    $plan.appendChild($price);
+
 		var $buttom = document.createElement('a')	    
 	    $buttom.classList.add("buttom")
 	    $price.appendChild($buttom);
+	    $buttom.href = "#";
 	    //тут сделать oneclick
 
 	    var $ppp = document.createElement('p')	    
 	    $ppp.classList.add("cart")
 	    $ppp.innerHTML = "Add to cart"
 	    $buttom.appendChild($ppp);
+	    var addToCartAtribute = ('addToCart(product[' + indexItem + '],userCar)')
+
+	    $buttom.setAttribute('onclick', addToCartAtribute)
 	
 	}
-
+	//каталог визуализации
 	function catalogVisual(productObject) {
 	    for (i = 0; i < productObject.length; i++) {
 	        catalogVisualItem(productObject[i], i)
@@ -203,8 +187,11 @@ function catalogVisualItem(productItem, indexItem) {
 	}
 
 	function init() {
-	    
-	    catalogVisual(product);
+	    mesageCart('В корзине пусто.')
+	    var $clear = document.getElementById('clear')
+	    $clear.textContent = 'Очистить корзину'
+	    $clear.addEventListener('click', handleClearCart)
+	    catalogVisual(product)
 	    
 	}
 	window.addEventListener('load', init) 

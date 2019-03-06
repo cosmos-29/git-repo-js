@@ -1,6 +1,6 @@
 
 // Создаем корзину для товаров выбранных, а также корзину наполненную товарами. 
-var $container = document.getElementById("container");
+var $container = document.getElementById("container2");
 var userCar = []
 var product = [
 	        {
@@ -12,7 +12,7 @@ var product = [
 	            , $volume: '100GB Space'
 	            , $domain: '1 Domain Name'
 	            ,  $count: 1	            
-	            
+	            ,  link: 'product1'
 	        }, {
 	            tag: 'ITEM N2'
 	            , naime: 'standard'
@@ -21,7 +21,8 @@ var product = [
 	            , $email: '15 Email Accounts'
 	            , $volume: '100GB Space'
 	            , $domain: '1 Domain Name'
-	            , $count: 1	            
+	            , $count: 1
+	            ,  link: 'product2'	            
 	            
 	        }, {
 	            tag: 'ITEM N3'
@@ -32,7 +33,7 @@ var product = [
 	            , $volume: '100GB Space'
 	            , $domain: '1 Domain Name'
 	            , $count: 1	            
-	            
+	            ,  link: 'product3'
 	        }, {
 	            tag: 'ITEM N4'
 	            , naime: 'nextOne'
@@ -41,7 +42,8 @@ var product = [
 	            , $email: '15 Email Accounts'
 	            , $volume: '100GB Space'
 	            , $domain: '1 Domain Name'
-	            , $count: 1	            
+	            , $count: 1
+	            ,  link: 'product1'	            
 	            
 	        }, {
 	              tag: 'ITEM N5'
@@ -51,7 +53,8 @@ var product = [
 	            , $email: '15 Email Accounts'
 	            , $volume: '100GB Space'
 	            , $domain: '1 Domain Name'
-	            , $count: 1	            
+	            , $count: 1
+	            ,  link: 'product2'	            
 	            
 	        }, {
 	              tag: 'ITEM N6'
@@ -62,7 +65,7 @@ var product = [
 	            , $volume: '100GB Space'
 	            , $domain: '1 Domain Name'
 	            , $count: 1	            
-	            
+	            ,  link: 'product3'
 	        }]
 
 
@@ -150,7 +153,7 @@ function catalogVisualItem(productItem, indexItem) {
 	    var $ul = document.createElement('ul')
 		$content.appendChild($ul);
 
-	    var li=document.createElement('li');
+	    var li = document.createElement('li');
 
     	for (var prop in productItem) {
 	        if (prop[0] == '$') {
@@ -159,6 +162,23 @@ function catalogVisualItem(productItem, indexItem) {
     		$li.innerHTML = productItem[prop];
     		}
 		}
+		var $lock = document.createElement('div')
+		$lock.classList.add("lock")
+		$content.appendChild($lock);
+
+		var $shim = document.createElement('div')
+		$shim.classList.add("shim")
+		$lock.appendChild($shim);
+
+		var $modal = document.createElement('div')
+		$modal.classList.add("modal")
+		$shim.appendChild($modal);
+
+
+		var $smallImages = document.createElement('img')
+		$smallImages.classList.add("smallImg")
+		$smallImages.src = ('img/' + productItem.link + '.jpg')
+		$modal.appendChild($smallImages);
 
 		var $price = document.createElement('div');
 	    $price.classList.add("price");
@@ -186,12 +206,18 @@ function catalogVisualItem(productItem, indexItem) {
 	    }
 	}
 
+	//функция вызова модального окна
+
+
+	//Функция init
+
 	function init() {
 	    mesageCart('В корзине пусто.')
 	    var $clear = document.getElementById('clear')
 	    $clear.textContent = 'Очистить корзину'
 	    $clear.addEventListener('click', handleClearCart)
 	    catalogVisual(product)
+	    
 	    
 	}
 	window.addEventListener('load', init) 

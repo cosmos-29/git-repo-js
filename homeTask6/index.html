@@ -11,7 +11,7 @@
 
 <body>
     <div id="container">
-      
+        <div id="container2"></div>
         <div class="shoppingCart">
             <div class="type cartDown">
                 <p>Shopping Cart</p>                
@@ -19,7 +19,16 @@
             <p id="cartcart">Корзина</p>
             <button id="clear">Очистить</button>
         </div>
-        
+        <div class="flexy">
+	            <a href="#ModalOpen" title="" id="previev"></a>
+	            <div id="ModalOpen" class="Window">
+	                <div><a href="#close" title="Закрыть" class="close">X</a><img src="" id='modalWindow' alt="Для подробного просмотра выберите товар" /><a href="leftArrowFoto" id="leftArrowFoto" title="Предыдущее фото" class="arrowFoto">&lt;</a><a href="rightArrowFoto" id="rightArrowFoto" title="Следующее фото" class="arrowFoto">&gt;</a></div>
+	            </div>
+	            <div class="cartResult">
+	                <div id="cart"></div>
+	                <button id='clear'></button>
+	            </div>
+	        </div>
         <script src="script/index.js"></script>
         </div>
 </body>

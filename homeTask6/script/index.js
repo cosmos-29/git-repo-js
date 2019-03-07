@@ -1,5 +1,6 @@
 
-// Создаем корзину для товаров выбранных, а также корзину наполненную товарами. 
+/* Создаем корзину для товаров выбранных, а также корзину наполненную товарами.  Для товаров, которые будут отображены в HTML 
+в блоке. */
 var $container = document.getElementById("container2");
 var userCar = []
 var product = [
@@ -185,7 +186,7 @@ function catalogVisualItem(productItem, indexItem) {
 	    $ppp.innerHTML = "Add to cart"
 	    $buttom.appendChild($ppp);
 	    var addToCartAtribute = ('addToCart(product[' + indexItem + '],userCar)')
-
+	    //делаем кнопку и присваиваем ей клик и функцию.
 	    $buttom.setAttribute('onclick', addToCartAtribute)
 	
 	}

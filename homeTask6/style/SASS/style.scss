@@ -59,6 +59,10 @@ body {
                             height: 52px;
                             line-height: 52px;
                         }
+                        
+                    }
+                    img:hover {
+                        opacity: 0.1;
                     }
                 }
                 .price {
@@ -69,6 +73,7 @@ body {
                         color: white;
                         text-decoration: none;
                     }
+                    
                 }
             }
         }
@@ -224,7 +229,8 @@ img {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  height: auto;
+  width: 50%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
@@ -240,4 +246,58 @@ img {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.preview, .preview img {
+        width: 700px;
+        height: 500px;
+        background-color: bisque;
+        margin: 0 auto;
+      }
+      .thumbnails {
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 700px;
+        margin: 0 auto;
+      }
+
+      .thumbnails li, .thumbnails img {
+        width: 150px;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+.template {
+    display: none;
+}
+.template2 {
+    display: none;
+}
+
+
+.template3 {
+    display: block;
+}
+#modalModal {
+    display: none;
+}
+.right {
+    
+  color: #aaa;
+  float: right;    
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 250px;
+
+
+}
+.left {
+  color: #aaa;    
+  font-size: 28px;
+  font-weight: bold;
+    float: left; 
+  margin-top: 250px;
+
 }

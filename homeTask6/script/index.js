@@ -76,25 +76,48 @@ function mesageCart(text) {
 		var cartcart = document.getElementById('cartcart')
 	   cartcart.textContent = text
 	}
+
 //Подсчет суммы в корзине
 	function countBasketPrice(cartUser) {
-	    var countCart = 0
-	    var sumPriceCart = 0
+	    var countCart = 0;
+	    var sumPriceCart = 0;
 	    for (var i = 0; i < cartUser.length; i++) {
-	        sumPriceCart += (cartUser[i].price1 + cartUser[i].price2/100) ;
+	        sumPriceCart += (cartUser[i].price1 + cartUser[i].price2/100)*cartUser[i].$count;
 	        countCart += cartUser[i].$count;
 	    }
 	    mesageCart('Итого: ' + countCart + ' шт. стоимостью ' + parseFloat(sumPriceCart.toFixed(2)) + ' $ ')
 	}
+
+// функция по выводу корзины 
+	function printCohosenCart(cartUser) {
+		console.log(cartUser);
+	}
+
 //добавление товара при клике
+
 	function addToCart(goods, cartUser) {
-	    cartUser.push(goods)
-	    countBasketPrice(cartUser)
+	   	
+	    if(cartUser.length == 0) {
+	    	cartUser.push(goods);
+	    } else {
+	    var countItems = 0;
+	    for( var i = 0; i < cartUser.length; i++) {
+	    
+	    if(goods.tag == cartUser[i].tag) {
+	    countItems++;
+		cartUser[i].$count + countItems;
+
+	} else if(goods.tag != cartUser[i].tag && countItems == 0) {
+		cartUser.push(goods);	
+	    }
+	    }
+	}
+	countBasketPrice(cartUser);
 	}
 //Очистка корзины
 	function clearCart(cartUser) {
-	    mesageCart('В корзине пусто.')
-	    cartUser.length = 0 /*cartUser.splice(0, cartUser.length)*/
+	    mesageCart('В корзине пусто.');
+	    cartUser.length = 0; /*cartUser.splice(0, cartUser.length)*/
 	}
 	
 	function handleClearCart() {
@@ -142,17 +165,17 @@ function catalogVisualItem(productItem, indexItem) {
 
 	    $header.innerHTML = productItem.price1;
 
-	    var $sup = document.createElement('sup')
-	    $sup.innerHTML = productItem.price2
+	    var $sup = document.createElement('sup');
+	    $sup.innerHTML = productItem.price2;
 	    $header.appendChild($sup);
 
-	    var $month = document.createElement('p')
-	    $month.innerHTML = "per month"
+	    var $month = document.createElement('p');
+	    $month.innerHTML = "per month";
 	    $month.classList.add("month");
 	    $header.appendChild($month);
 
 
-	    var $ul = document.createElement('ul')
+	    var $ul = document.createElement('ul');
 		$content.appendChild($ul);
 
 	    var li = document.createElement('li');
@@ -166,33 +189,33 @@ function catalogVisualItem(productItem, indexItem) {
 		}
 		
 		var $smallImages = document.createElement('img')
-		$smallImages.classList.add("smallImg")
+		$smallImages.classList.add("smallImg");
 		$smallImages.id = ("smallImg" + indexItem);
-		$smallImages.src = ('img/' + productItem.link[0] + '.jpg')
+		$smallImages.src = ('img/' + productItem.link[0] + '.jpg');
 		$content.appendChild($smallImages);
 
 		var $price = document.createElement('div');
 	    $price.classList.add("price");
 	    $plan.appendChild($price);
 
-		var $buttom = document.createElement('a')	    
-	    $buttom.classList.add("buttom")
+		var $buttom = document.createElement('a');	    
+	    $buttom.classList.add("buttom");
 	    $price.appendChild($buttom);
 	    $buttom.href = "#";
 	    //тут сделать oneclick
 
-	    var $ppp = document.createElement('p')	    
-	    $ppp.classList.add("cart")
-	    $ppp.innerHTML = "Add to cart"
+	    var $ppp = document.createElement('p');	    
+	    $ppp.classList.add("cart");
+	    $ppp.innerHTML = "Add to cart";
 	    $buttom.appendChild($ppp);
-	    var addToCartAtribute = ('addToCart(product[' + indexItem + '],userCar)')
+	    var addToCartAtribute = ('addToCart(product[' + indexItem + '],userCar)');
 	    //делаем кнопку и присваиваем ей клик и функцию.
-	    $buttom.setAttribute('onclick', addToCartAtribute)
+	    $buttom.setAttribute('onclick', addToCartAtribute);
 
 
 	    //заполняем объектами для модального окна;
 		var $template = document.querySelector('#template');
-		var $addItemContent = document.getElementById('itemContent' + indexItem)
+		var $addItemContent = document.getElementById('itemContent' + indexItem);
 		var $thumbnails = document.getElementById('thumbnails' + indexItem);
 
 
@@ -214,19 +237,19 @@ function catalogVisualItem(productItem, indexItem) {
 	    for (var i = 0; i < productObject.length; i++) {
 	        var $modalModalGlobal = $modalModal.cloneNode(true);
 	        $modalModalGlobal.classList.remove("modal-content",);
-	        $modalModalGlobal.classList.add("modal-content", "modal-content" + i)
-	        $modalModalGlobal.style.display="none";
+	        $modalModalGlobal.classList.add("modal-content", "modal-content" + i);
+	        $modalModalGlobal.style.display = "none";
 	        var $bigPic = $modalModalGlobal.querySelector('.preview');
 	        
 	        var bigPicImg = document.createElement("img");        	
 
 	        bigPicImg.src = "img/" + productObject[i].link[0] + '.jpg';
-	        bigPicImg.classList.add("hugePic")
+	        bigPicImg.classList.add("hugePic");
 	        $modalModalGlobal.id = "modal-content" + i;
 	        $modalModalGlobal.querySelector('#thumbnails').id = ('thumbnails' + i); 	
 	        modal.appendChild($modalModalGlobal);
 	        /*$bigPic.appendChild(bigPicImg);*/
-	        var $preview = document.class
+	        var $preview = document.class;
 	        catalogVisualItem(productObject[i], i);
 	        
 
@@ -243,6 +266,7 @@ function catalogVisualItem(productItem, indexItem) {
 
 	// Get the modal
 var modal = document.getElementById('myModal');
+var modalWindow = document.getElementById('modalModal');
 
 // Get the button that opens the modal
 var btn1 = document.getElementsByClassName("smallImg");
@@ -252,7 +276,7 @@ var btn2 = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close");
 
 // When the user clicks on the button, open the modal 
-document.addEventListener('click', handleModalDisplay)
+document.addEventListener('click', handleModalDisplay);
 
 
 function handleModalDisplay(event) {
@@ -318,14 +342,7 @@ function isActive(anyContent) {
 			return 0;
 		}
 	}
-}
-
-
-
-
-
-
-			
+}	
    
    
 
@@ -354,9 +371,27 @@ function handleModalRoller(event) {
 	}
 }
 
+function generateModalCart() {
+	 var modalForCart = modalWindow.cloneNode(true);
+  	 modalForCart.classList.remove("modal-content",);
+     modalForCart.classList.add('modalWindowShow');
+     modalForCart.id = "modaWindowBig";
+     modalForCart.children[2].id = "modalWindowSmall";
+     modalForCart.children[2].classList.remove('itemContent', 'template2');
+     modalForCart.children[2].classList.add('modalWindow', 'cart');
+     modalForCart.children[2].children[1].classList.remove('thumbnails');
+     modalForCart.children[2].children[1].id = "cartItems";
+     modal.appendChild(modalForCart);
+}
 
-btn2.onclick = function() {
+var buttonCart = document.getElementById('cartcart');
+
+
+buttonCart.onclick = function() {
   modal.style.display = "block";
+  modal.children[0].style.display = "none";
+  printCohosenCart(userCar);
+ 
 }
 
 
@@ -372,33 +407,6 @@ function handleModalDisplayNone(event) {
 	}
 
 }
-// When the user clicks on <span> (x), close the modal
-/*
-span.onclick = function() {
-  modal.style.display = "none";
-}
-*/
-// When the user clicks anywhere outside of the modal, close it
-
-/*var activeIndex = 0;
-        function handleTimerUp() {
-          var $thumbnails = document.getElementsByClassName('thumbnails');
-          var $a = $thumbnails.children[activeIndex].children[0];
-          var path = $a.href;
-
-          var $image = document.getElementsByClassName('link');
-          $image.src = path;
-
-          var $preview = document.getElementsByClassName('preview');
-          $preview.innerHTML = '';
-
-          $preview.appendChild($image);
-          activeIndex++;
-          if(activeIndex > $thumbnails.children.length - 1) {
-            activeIndex = 0;
-          }
-        }*/
-
         function handleThumbnailsClick(event) {
           event.preventDefault();
           if(event.target.tagName === 'IMG') {
@@ -432,7 +440,7 @@ modalContentNails = isActive(document.getElementsByClassName('modal-content'));
             var $preview = $aaa.parentElement.parentElement.parentElement.querySelector('.preview');
             $preview.innerHTML = '';
             $preview.appendChild($image);
-            //$preview.appendChild($image);
+            
           }
         }
 	
@@ -458,9 +466,7 @@ window.onclick = function(event) {
 	    $clear.textContent = 'Очистить корзину'
 	    $clear.addEventListener('click', handleClearCart)
 	    catalogVisual(product);
-
-
-
+	    generateModalCart();
 	        
 	}
 

@@ -70,11 +70,15 @@ var product = [
 	            ,  link: ['product3','product1','product2',]
 	        }]
 
+	        prductClone = [];
+
+
+
 
 // Вывод результата в виде текста
 function mesageCart(text) {
-		var cartcart = document.getElementById('cartcart')
-	   cartcart.textContent = text
+		var cartcart = document.getElementById('cartcart');
+	   cartcart.textContent = text;
 	}
 
 //Подсчет суммы в корзине
@@ -89,28 +93,90 @@ function mesageCart(text) {
 	}
 
 // функция по выводу корзины 
+	
 	function printCohosenCart(cartUser) {
+		var printCart = document.getElementById('modalWindowSmall').querySelector('.preview');
+		var printPrintCart = document.createElement('div');
+		printPrintCart.id = "printPrintCart";
+		if (document.getElementById('printPrintCart') != null) {
+			var clearIt = document.getElementById('printPrintCart');
+			clearIt.remove();
+		}	
+		printCart.appendChild(printPrintCart);
+		for (var i = 0; i < cartUser.length; i++) {
+		var strings = document.createElement('div');
+		strings.classList.add = "clearIt";
+		printPrintCart.appendChild(strings);
+		/*if (document.getElementsByClassName('clearIt') != 0) {
+			printPrintCart.remove(); 
+		} else {
+		}*/
+		
+		for (var j = 0; j < 4; j++ ){
+			var cells = document.createElement('div');			
+			switch(j) {
+				case 0:
+				cells.innerHTML = cartUser[i].tag;
+				strings.appendChild(cells);
+				break;
+				case 1:
+				cells.innerHTML = (cartUser[i].price1 + cartUser[i].price2/100) + ' $';
+				strings.appendChild(cells);
+				break;
+				case 2:
+				cells.innerHTML = '<a href="#">-</a>' + cartUser[i].$count + '<a href="#">+</a>';
+				strings.appendChild(cells);
+				break;
+				case 3:
+				cells.innerHTML = '<button><i class="fas fa-times"></i></button>';
+				cells.classList.add('cancel')
+				strings.appendChild(cells);
+				break;
+			}	
+
+		}		
+		}
+		var stringsLast = document.createElement('div');
+		stringsLast.classList.add = "summary";
+		stringsLast.innerHTML = document.getElementById('cartcart').textContent;
+		printPrintCart.appendChild(stringsLast);
 		console.log(cartUser);
 	}
 
 //добавление товара при клике
 
+	function cloneObject(X) {
+		var clonedObject = {};
+		for (var prop in X) {
+			clonedObject[prop] = X[prop];
+		}
+		return clonedObject;
+	}
+
 	function addToCart(goods, cartUser) {
 	   	
+		var clonedProduct = cloneObject(goods);
+
 	    if(cartUser.length == 0) {
-	    	cartUser.push(goods);
+	    	cartUser.push(clonedProduct);
 	    } else {
 	    var countItems = 0;
 	    for( var i = 0; i < cartUser.length; i++) {
 	    
-	    if(goods.tag == cartUser[i].tag) {
+	    if(clonedProduct.tag == cartUser[i].tag) {
 	    countItems++;
-		cartUser[i].$count + countItems;
+		cartUser[i].$count = cartUser[i].$count + clonedProduct.$count;
+		continue;
+	} 
+	}
+		for( var i = 0; i < cartUser.length; i++) {
+	 if(clonedProduct.tag != cartUser[i].tag && countItems == 0) {
+		cartUser.push(clonedProduct);
+		countItems++;	
+	    } 
+	    }
+	    
 
-	} else if(goods.tag != cartUser[i].tag && countItems == 0) {
-		cartUser.push(goods);	
-	    }
-	    }
 	}
 	countBasketPrice(cartUser);
 	}
@@ -118,6 +184,12 @@ function mesageCart(text) {
 	function clearCart(cartUser) {
 	    mesageCart('В корзине пусто.');
 	    cartUser.length = 0; /*cartUser.splice(0, cartUser.length)*/
+	    cartUser = [];	    
+	    var children = document.getElementById('printPrintCart');
+	    //var childrenKids = children.getElementsByTagName('div');
+	   //childrenKids.remove();
+	   children.remove();
+
 	}
 	
 	function handleClearCart() {
@@ -447,8 +519,52 @@ modalContentNails = isActive(document.getElementsByClassName('modal-content'));
 } 
 
  
+addEventListener ("click", cancelItem);
+
+function cancelItem() {
+	if(event.target.tagName == 'BUTTON'  ) {
+		console.log(event.target.parentElement.parentElement.children[0].innerHTML);
+		var emptyCart = [];
+		for ( var i = 0; i < userCar.length; i++) {
+			if (event.target.parentElement.parentElement.children[0].innerHTML != userCar[i].tag) {
+				emptyCart.push(userCar[i]);				
+			}
+		}
+		userCar = emptyCart;
+		countBasketPrice(userCar);
+		printCohosenCart(userCar);
+		console.log(userCar);
 
 
+
+	}
+}
+
+addEventListener ("click", countRecount);
+function countRecount(event) {
+	if(event.target.tagName == 'A') {
+		if (event.target.innerHTML == "+") {
+			for ( var i = 0; i < userCar.length; i++) {
+				if (event.target.parentElement.parentElement.children[0].innerHTML == userCar[i].tag) {
+					userCar[i].$count++;
+				}
+			}
+		} else  {
+			for ( var i = 0; i < userCar.length; i++) {
+				if (event.target.parentElement.parentElement.children[0].innerHTML == userCar[i].tag) {
+					userCar[i].$count--;
+					if (userCar[i].$count < 1) {
+						userCar[i].$count = 0;
+					}
+				}
+			}
+		
+	}
+	countBasketPrice(userCar);
+	printCohosenCart(userCar);
+
+}
+}
 
 window.onclick = function(event) {
   if (event.target == modal) {
@@ -467,6 +583,7 @@ window.onclick = function(event) {
 	    $clear.addEventListener('click', handleClearCart)
 	    catalogVisual(product);
 	    generateModalCart();
+
 	        
 	}
 

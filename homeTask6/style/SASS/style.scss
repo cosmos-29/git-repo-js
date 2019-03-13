@@ -333,4 +333,29 @@ img {
     max-height: auto;
     width: 50%;
     /* Could be more or less, depending on screen size */
+    #modalWindowSmall {
+        .preview {
+            #printPrintCart {
+                
+            
+            div {
+                display: flex;
+                flex-direction: row;
+                color:red;
+                div {
+                    width: calc(700px/4);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 50px;
+                    color: black;
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                    
+                    
+                }
+            }
+                }
+        }
+    }
 }

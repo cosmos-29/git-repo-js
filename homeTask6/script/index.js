@@ -105,7 +105,7 @@ function mesageCart(text) {
 		printCart.appendChild(printPrintCart);
 		for (var i = 0; i < cartUser.length; i++) {
 		var strings = document.createElement('div');
-		strings.classList.add = "clearIt";
+		strings.classList.add("clearIt");
 		printPrintCart.appendChild(strings);
 		/*if (document.getElementsByClassName('clearIt') != 0) {
 			printPrintCart.remove(); 
@@ -140,7 +140,15 @@ function mesageCart(text) {
 		stringsLast.classList.add = "summary";
 		stringsLast.innerHTML = document.getElementById('cartcart').textContent;
 		printPrintCart.appendChild(stringsLast);
-		console.log(cartUser);
+		var $nextButton = document.createElement('div');
+		$nextButton.id = 'nextButton';
+		$nextButton.innerHTML = 'next';
+		var $backButton = document.createElement('div');
+		$backButton.id = 'backButton';
+		$backButton.innerHTML = 'back';
+		printPrintCart.appendChild($backButton);
+		printPrintCart.appendChild($nextButton)
+		//console.log(cartUser);
 	}
 
 //добавление товара при клике
@@ -539,7 +547,36 @@ function cancelItem() {
 
 	}
 }
+addEventListener ("click", changeSlide); 
 
+function changeSlide(event) {
+	var cancelElement = document.getElementsByClassName('clearIt');
+	var cancelParent = event.target.parentElement.parentElement;
+
+	if (event.target.id == 'nextButton' && event.target.parentElement.children[0].style.display != "none") {
+		for( var i = 0; i < cancelElement.length; i++) {
+		cancelElement[i].style.display = "none";
+		}	
+		var $addresDelivery = document.createElement('div');
+		$addresDelivery.id = "addresDelivery";
+		cancelParent.appendChild($addresDelivery);
+		var $addresDeliveryP = document.createElement('p');
+		$addresDeliveryP.textContent = "Введите адрес доставки";
+		$addresDelivery.appendChild($addresDeliveryP);
+		var $addresDeliveryinput = document.createElement('input');
+		$addresDelivery.appendChild($addresDeliveryinput);
+
+
+	} else if (event.target.id == 'nextButton' && event.target.parentElement.children[0].style.display == "none") {
+		for( var i = 0; i < cancelParent.length; i++) {
+		cancelParent[i].style.display = "none";
+		}
+		var $acceptButton = document.createElement('button');
+		$acceptButton.textContent = 'ПОДВЕРДИТЬ';
+		cancelParent.appendChild($acceptButton);
+	}
+	
+}
 addEventListener ("click", countRecount);
 function countRecount(event) {
 	if(event.target.tagName == 'A') {

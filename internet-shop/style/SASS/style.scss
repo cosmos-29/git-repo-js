@@ -1,0 +1,30 @@
+    @import "../../packages/bootstrap-4.2-2.1/scss/bootstrap.scss";
+    @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+    $widthAll: 1140px;
+    $colorAll: red;
+    $fontFamily: 'Lato',
+    sans-serif;
+    // Стили к страничке index.html;
+    @mixin margin {
+        margin: 0 auto;
+        width: $widthAll;
+    }
+    
+    body {
+        header {
+            background-color: $colorAll !important;
+            height: auto;
+        .container {
+            font-family: $fontFamily;
+            border-bottom: 1px solid #ececec;
+            
+            width: $widthAll;
+            nav {
+                @include margin;
+                background-color: $colorAll !important;
+                margin-right: 0;
+                }
+            
+        }
+    }
+}
